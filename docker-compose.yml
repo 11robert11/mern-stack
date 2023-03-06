@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  node-express:
+    build: ./backend/.
+    volumes:
+      - ./backend/.:/app
+    ports:
+      - "8000:8888"
+
+  react-frontend:
+    build: ./react-frontend/.
+    volumes:
+      - ./react-frontend/.:/app
+    ports:
+      - "3000:3000"
+
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    command: --quiet --logpath /dev/null

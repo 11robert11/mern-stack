@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  node-express:
+    build: ./backend/prod.Dockerfile
+    ports:
+      - "8000:8888"
+
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
