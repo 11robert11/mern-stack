@@ -3,20 +3,25 @@ services:
   express-backend:
     build:
       context: ./express-backend/.
-      dockerfile: Dockerfile.production
+      dockerfile: Dockerfile.development
+    volumes:
+      - ./express-backend/.:/app
     ports:
       - "8000:8888"
 
-  react-nginx-server:
-    build:
+  react-frontend:
+    build: 
       context: ./react-frontend/.
-      dockerfile: Dockerfile.production
+      dockerfile: Dockerfile.development
+    volumes:
+      - ./react-frontend/.:/app
     ports:
-      - "90:80"
+      - "3000:3000"
+
   mongo:
     image: mongo
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
-    command: --quiet --logpath /dev/null
+    command: --quiet 
